@@ -14,6 +14,10 @@ const server = http.createServer((request, response) => {
   if (request.url == "/produtos") {
     switch (request.method) {
       case "GET":
+        response.writeHead(200, {
+          "Content-Type": "application/json; charset: utf-8;",
+        });
+        response.end(ListarProdutos());
         break;
       case "POST":
         break;

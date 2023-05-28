@@ -1,6 +1,15 @@
 const http = require("http");
 const fs = require("fs");
 
+function ListarProdutos() {
+  try {
+    const dados = JSON.parse(fs.readFileSync("dados.json", "utf-8"));
+    return JSON.stringify(dados.produtos);
+  } catch (erro) {
+    return "Erro ao executar";
+  }
+}
+
 const server = http.createServer((request, response) => {
   if (request.url == "/produtos") {
     switch (request.method) {

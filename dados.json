@@ -1,0 +1,6 @@
+{
+  "produtos": [
+    { "nome": "Caneta azul", "preco": 2, "marca": "BIC", "cor": "azul" },
+    { "nome": "Caneta azul", "preco": 2, "marca": "BIC", "cor": "azul" }
+  ]
+}

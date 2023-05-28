@@ -17,7 +17,7 @@ function CriarProduto(novoProduto) {
     fs.writeFileSync("dados.json", JSON.stringify(dados));
     return "Produto cadastrado com sucesso!";
   } catch {
-    return "Erro ao executar";
+    return "Erro ao cadastrar produto";
   }
 }
 
@@ -31,6 +31,16 @@ const server = http.createServer((request, response) => {
         response.end(ListarProdutos());
         break;
       case "POST":
+        let data = "";
+        request.on("data", (chunk) => {
+          data += chunk;
+        });
+        request.on("end", () => {
+          response.writeHead(200, {
+            "Content-Type": "text/plain; charset: utf-8;",
+          });
+          response.end(CriarProduto(data));
+        });
         break;
     }
   } else {
@@ -39,7 +49,7 @@ const server = http.createServer((request, response) => {
   }
 });
 
-PORT = 3000;
+PORT = 3005;
 
 server.listen(PORT);
 console.log(`Servidor rodando no endereço http://localhost:${PORT}`);
